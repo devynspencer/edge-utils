@@ -1,8 +1,10 @@
 name: Feature Request 💡
 description: Suggest a feature, enhancement, or an idea for this project.
 title: "[Feature]: "
-labels: ["enhancement"]
 assignees: ["devynspencer"]
+labels:
+  - "type: feature request"
+  - "item: documentation"
 
 body:
   - type: markdown

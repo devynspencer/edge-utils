@@ -1,7 +1,10 @@
 name: Bug Report 🐛
 description: File a bug report.
 title: "[Bug]: "
-labels: ["bug"]
+labels:
+  - "type: bug"
+  - "status: unconfirmed"
+
 assignees: ["devynspencer"]
 
 body:
