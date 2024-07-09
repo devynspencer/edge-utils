@@ -17,7 +17,7 @@ jobs:
         if: github.event.issue.state != 'closed'
         uses: actions/add-to-project@v1.0.2
         with:
-          project-url: ${{ vars.MODULES_PROJECT_URL }}
+          project-url: ${{ vars.WEB_DEVELOPMENT_PROJECT_URL }}
           github-token: ${{ secrets.CLASSIC_TOKEN }}
           labeled: >
             item: build system,
@@ -54,7 +54,7 @@ jobs:
           )
         uses: endbug/project-fields@v2
         with:
-          project_url: ${{ vars.MODULES_PROJECT_URL }}
+          project_url: ${{ vars.WEB_DEVELOPMENT_PROJECT_URL }}
           operation: set
           fields: Created At,Status
           values: ${{ github.event.issue.created_at }},Backlog
