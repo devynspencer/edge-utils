@@ -1,0 +1,69 @@
+name: Bug Report 🐛
+description: File a bug report.
+title: "[Bug]: "
+labels: ["bug"]
+assignees: ["devynspencer"]
+
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for taking the time to fill out this bug report!
+
+  - type: input
+    id: edge-version
+    attributes:
+      label: Edge version
+      description: |
+        What version(s) of Microsoft Edge are you using when the bug is encountered?
+        Navigate to [edge://version](edge://version) in your browser if unsure.
+    validations:
+      required: true
+
+  - type: textarea
+    id: behavior-expected
+    attributes:
+      label: Expected behavior
+      description: What were you expecting to happen?
+    validations:
+      required: true
+
+  - type: textarea
+    id: behavior-actual
+    attributes:
+      label: Actual behavior
+      description: What actually happened? Provide a detailed description of what happened, with as much context as possible.
+      placeholder: Tell us what you see!
+      value: "A bug happened!"
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps-to-replicate
+    attributes:
+      label: Steps to replicate
+      description: Include the exact steps to reproduce the issue.
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
+      render: shell
+
+  - type: textarea
+    id: comments
+    attributes:
+      label: Comments
+      description: Include any additional information or commentary.
+
+  - type: checkboxes
+    id: terms-code-of-conduct
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://example.com).
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
