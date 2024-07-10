@@ -12,10 +12,25 @@
     "48": "assets/icons/brain-48.jpg",
     "128": "assets/icons/brain-128.jpg"
   },
+  "permissions": [
+    "tabs"
+  ],
   "action": {
     "default_title": "Edge Utilities",
     "default_icon": "assets/icons/brain-original.jpg",
     "default_popup": "src/html/popup.html"
+  },
+  "commands": {
+    "toggle-popup": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+Y",
+        "mac": "Command+Shift+Y"
+      },
+      "description": "Open the extension popup."
+    }
+  },
+  "background": {
+    "service_worker": "src/js/background.js"
   },
   "version": "0.0.1"
 }
