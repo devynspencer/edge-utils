@@ -12,5 +12,10 @@
     "48": "assets/icons/brain-48.jpg",
     "128": "assets/icons/brain-128.jpg"
   },
+  "action": {
+    "default_title": "Edge Utilities",
+    "default_icon": "assets/icons/brain-original.jpg",
+    "default_popup": "src/html/popup.html"
+  },
   "version": "0.0.1"
 }
