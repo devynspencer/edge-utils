@@ -1,0 +1,16 @@
+{
+  "name": "Edge Utilities",
+  "description": "Utility extensions for Microsoft Edge to enhance your browser experience.",
+  "author": {
+    "name": "Devyn Spencer",
+    "url": "https://github.com/devynspencer"
+  },
+  "manifest_version": 3,
+  "icons": {
+    "16": "assets/icons/brain-16.jpg",
+    "32": "assets/icons/brain-32.jpg",
+    "48": "assets/icons/brain-48.jpg",
+    "128": "assets/icons/brain-128.jpg"
+  },
+  "version": "0.0.1"
+}
