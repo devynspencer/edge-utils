@@ -27,6 +27,13 @@
         "mac": "Command+Shift+Y"
       },
       "description": "Open the extension popup."
+    },
+    "toggle-pin-current-tab": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+X",
+        "mac": "Command+Shift+X"
+      },
+      "description": "Pin the current tab."
     }
   },
   "background": {
