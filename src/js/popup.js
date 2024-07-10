@@ -4,7 +4,7 @@ function updateNotificationMessage(message) {
     messageElement.textContent = message;
 }
 
-document.getElementById("pinActiveTab")
+document.getElementById("toggleActiveTabPin")
     .addEventListener("click", () => {
         updateNotificationMessage("Pinning active tab ...");
         toggleActiveTabPin();
