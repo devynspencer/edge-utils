@@ -25,7 +25,7 @@
     "default_popup": "src/html/popup.html"
   },
   "commands": {
-    "toggle-popup": {
+    "toggle-popup-display": {
       "suggested_key": {
         "default": "Ctrl+Shift+Y",
         "mac": "Command+Shift+Y"
