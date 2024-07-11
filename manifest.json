@@ -15,6 +15,10 @@
   "permissions": [
     "tabs"
   ],
+  "options_ui": {
+    "page": "src/html/options.html",
+    "open_in_tab": true
+  },
   "action": {
     "default_title": "Edge Utilities",
     "default_icon": "assets/icons/brain-original.jpg",
