@@ -1,0 +1,7 @@
+body {
+  width: 600px;
+}
+
+:root {
+  --bulma-family-primary: Roboto, Helvetica Neue, Helvetica, Arial, sans-serif;
+}
