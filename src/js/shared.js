@@ -7,16 +7,16 @@ function toggleActiveTabPin() {
     });
 }
 
-function validateConfig(config) {
+function validateConfig(data) {
     const requiredKeys = ["settings", "rules", "tabs", "tab_groups"];
 
-    if (!config) {
-        console.error("Invalid config file");
+    if (!data) {
+        console.error(`Invalid configuration file`);
         return false;
     }
 
     for (const key of requiredKeys) {
-        if (!config.hasOwnProperty(key)) {
+        if (!data.hasOwnProperty(key)) {
             console.error(`Invalid config file: missing '${key}' key`);
             return false;
         }
