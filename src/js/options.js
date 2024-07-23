@@ -1,6 +1,34 @@
 document.getElementById("inputConfigFile")
     .addEventListener("change", getConfigInput);
 
+function handleApplyConfig() {
+    console.log("Applying configuration...");
+
+    let content = {};
+    const fileInput = document.getElementById("inputConfigFile");
+
+    if (fileInput.files.length > 0) {
+        const reader = new FileReader();
+
+        console.log(`Loading config from file '${fileInput.files[0].name}'...`);
+
+        reader.readAsText(fileInput.files[0]);
+        reader.onloadend = () => {
+            try {
+                content = JSON.parse(reader.result);
+
+                validateConfig(content);
+                applyConfig(content);
+            }
+
+            catch (error) {
+                console.error("Error reading file: ", error);
+            }
+        };
+    }
+}
+
+
 function getConfigInput(event) {
     const reader = new FileReader();
 
