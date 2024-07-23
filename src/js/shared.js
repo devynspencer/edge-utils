@@ -40,3 +40,10 @@ function validateConfig(data) {
     return true;
 }
 
+async function loadConfig() {
+    console.log("Loading configuration...");
+
+    const config = await chrome.storage.sync.get("config");
+
+    return config;
+}
