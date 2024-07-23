@@ -28,6 +28,11 @@ function handleApplyConfig() {
     }
 }
 
+async function handleShowConfig() {
+    console.log("Showing current configuration...");
+    const loadedConfig = await loadConfig();
+    console.log(`handleShowConfig: ${JSON.stringify(loadedConfig)}`);
+}
 
 function getConfigInput(event) {
     const reader = new FileReader();
