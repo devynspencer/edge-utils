@@ -7,6 +7,21 @@ function toggleActiveTabPin() {
     });
 }
 
+async function applyConfig(data) {
+    console.log(`Applying configuration from data ${data}...`);
+
+    await chrome.storage.sync.set({
+        config: {
+            rules: data.rules,
+            settings: data.settings,
+            tabs: data.tabs,
+            tab_groups: data.tab_groups
+        }
+    });
+
+    console.log("Configuration applied successfully!", data);
+}
+
 function validateConfig(data) {
     const requiredKeys = ["settings", "rules", "tabs", "tab_groups"];
 
