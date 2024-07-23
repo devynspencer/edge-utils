@@ -1,5 +1,8 @@
-document.getElementById("inputConfigFile")
-    .addEventListener("change", getConfigInput);
+document.getElementById("applyConfig")
+    .addEventListener("click", handleApplyConfig);
+
+document.getElementById("showConfig")
+    .addEventListener("click", handleShowConfig);
 
 function handleApplyConfig() {
     console.log("Applying configuration...");
