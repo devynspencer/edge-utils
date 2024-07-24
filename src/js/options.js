@@ -7,6 +7,14 @@ document.getElementById("applyConfig")
 document.getElementById("showConfig")
     .addEventListener("click", handleShowConfig);
 
+const fileInput = document.querySelector("#config-file-input-field input[type=file]");
+fileInput.onchange = () => {
+    if (fileInput.files.length > 0) {
+        const fileName = document.querySelector("#config-file-input-field .file-name");
+        fileName.textContent = fileInput.files[0].name;
+    }
+};
+
 function handleValidateConfig() {
     console.log("Validating configuration...");
 
