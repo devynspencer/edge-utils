@@ -1,28 +1,79 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css"
+    />
+  </head>
+
   <body>
-    <div class="container">
-      <h1>Options</h1>
+    <section class="section">
+      <h1 class="title">Options</h1>
+      <p class="subtitle">Subtitle content goes here.</p>
+      <div class="notification is-info">
+        <button id="message-clear" class="delete"></button>
+        <p id="message">This should be hidden!</p>
+      </div>
+      <div class="columns">
+        <div class="column is-4">
+          <label class="is-block mb-4">
+            <span class="is-block mb-2">Current Configuration</span>
+            <div class="field is-grouped is-grouped-multiline">
+              <p class="control">
+                <button class="button is-info is-outlined" id="showConfig">
+                  Show
+                </button>
+              </p>
+              <p class="control">
+                <button class="button is-danger disabled" id="clearConfig">
+                  Clear
+                </button>
+              </p>
+            </div>
+          </label>
+        </div>
+        <div class="column is-4">
+          <span class="is-block mb-2">Configuration File</span>
+          <div id="config-file-input-field" class="file has-name">
+            <label class="file-label">
+              <input
+                class="file-input"
+                type="file"
+                name="config"
+                id="inputConfigFile"
+              />
+              <span class="file-cta">
+                <span class="file-icon">
+                  <i class="fas fa-upload"></i>
+                </span>
+                <span class="file-label"> Choose a file… </span>
+              </span>
+              <span class="file-name"> No file uploaded </span>
+            </label>
+          </div>
+          <div class="field is-grouped is-grouped-multiline">
+            <p class="control">
+              <button class="button is-info is-outlined" id="previewConfig">
+                Preview
+              </button>
+            </p>
+            <p class="control">
+              <button class="button is-primary is-outlined" id="validateConfig">
+                Validate
+              </button>
+            </p>
+            <p class="control">
+              <button class="button is-warning" id="applyConfig">Apply</button>
+            </p>
+          </div>
+        </div>
+      </div>
 
-      <div id="message"></div>
 
-      <h2>General</h2>
-
-      <h2>Features</h2>
-
-      <h2>Rules</h2>
-
-      <h2>Import</h2>
-
-      <input id="inputConfigFile" type="file" name="inputConfigFile" />
-      <button class="action-btn" id="previewConfig">Preview</button>
-      <button class="action-btn" id="validateConfig">Validate</button>
-      <button class="action-btn" id="applyConfig">Apply</button>
-      <button class="action-btn" id="showConfig">Show Current</button>
-
-      <h2>Export Configuration</h2>
-      <button class="action-btn" id="exportConfig">Export</button>
-    </div>
+    </section>
 
     <script src="../js/shared.js"></script>
     <script src="../js/options.js"></script>
