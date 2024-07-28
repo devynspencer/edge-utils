@@ -1,0 +1,35 @@
+/*
+    https://stackoverflow.com/questions/4810841/pretty-print-json-using-javascript
+*/
+
+pre {
+  background-color: #0d1117;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  padding: 16px;
+  margin: 16px 0;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 14px;
+  line-height: 1.6;
+  overflow: auto;
+}
+
+.string {
+  color: #0366d6;
+}
+
+.number {
+  color: #098658;
+}
+
+.boolean {
+  color: #e36209;
+}
+
+.null {
+  color: #6f42c1;
+}
+
+.key {
+  color: #e45649;
+}
