@@ -7,6 +7,42 @@ function toggleActiveTabPin() {
     });
 }
 
+
+async function organizeTabs() {
+    const currentConfig = (await loadConfig()).config;
+    const tabs = await chrome.tabs.query({ currentWindow: true });
+    const currentGroups = await chrome.tabGroups.query({});
+
+    currentConfig.tab_groups.forEach(group => {
+        // Add any missing groups from config
+        // Find tabs that belong to the group
+        const groupTabs = tabs.filter(tab => {
+            return group.tabs.some(url => {
+                const tabUrl = tab.url.replace(/^https?:\/\//, '');
+                const configUrl = url.replace(/^https?:\/\//, '');
+
+                if (tabUrl.startsWith(configUrl)) {
+                    console.log({ tab: tabUrl, config: configUrl, startsWith: tabUrl.startsWith(configUrl) });
+                } else {
+                    console.warn({ tab: tabUrl, config: configUrl, startsWith: tabUrl.startsWith(configUrl) });
+                }
+
+                return tabUrl.startsWith(configUrl);
+            });
+        });
+
+        // TODO: Ensure group doesn't already exist so we're not creating a new one
+        // Move tabs to the group
+        if (groupTabs.length > 0) {
+            const color = group.color.toLowerCase() || "grey";
+
+            chrome.tabs.group({ tabIds: groupTabs.map(tab => tab.id) }, groupId => {
+                chrome.tabGroups.update(groupId, { color: color, title: group.name });
+            });
+        }
+    });
+}
+
 async function applyConfig(data) {
     console.log(`Applying configuration from data ${data}...`);
 
