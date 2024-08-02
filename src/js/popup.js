@@ -44,6 +44,23 @@ document.getElementById("copyFilteredTabs")
             copyToClipboard(urls);
         });
     });
+
+document.getElementById("copyTabsFromGroup")
+    .addEventListener("click", () => chrome.tabs.query({ currentWindow: true }, tabs => {
+        const activeTab = tabs.find(tab => tab.active);
+
+        if (activeTab.groupId === -1) {
+            updateNotificationMessage("No tab group found for the active tab.");
+            return;
+        }
+
+        const groupTabs = tabs.filter(tab => tab.groupId === activeTab.groupId);
+        const urls = groupTabs.map(tab => tab.url).join("\n");
+
+        updateNotificationMessage(`Copying [${groupTabs.length}] tabs in group [${activeTab.groupId}]...`);
+        copyToClipboard(urls);
+    }));
+
 document.getElementById("toggleActiveTabPin")
     .addEventListener("click", () => {
         updateNotificationMessage("Pinning active tab ...");
