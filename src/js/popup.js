@@ -17,6 +17,12 @@ function copyToClipboard(text) {
     document.body.removeChild(textarea);
 }
 
+document.getElementById("organizeTabs")
+    .addEventListener("click", () => {
+        updateNotificationMessage("Organizing tabs...");
+        organizeTabs();
+    });
+
 document.getElementById("copyTabs")
     .addEventListener("click", () => {
         chrome.tabs.query({}, tabs => {
