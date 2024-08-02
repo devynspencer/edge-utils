@@ -26,13 +26,6 @@
     "default_popup": "src/html/popup.html"
   },
   "commands": {
-    "toggle-popup-display": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+Y",
-        "mac": "Command+Shift+Y"
-      },
-      "description": "Open the extension popup."
-    },
     "toggle-pin-current-tab": {
       "suggested_key": {
         "default": "Ctrl+Shift+X",
