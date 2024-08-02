@@ -14,6 +14,8 @@
   },
   "permissions": [
     "tabs",
+    "tabs",
+    "tabGroups",
     "storage"
   ],
   "options_ui": {
