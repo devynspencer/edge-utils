@@ -6,4 +6,10 @@ chrome.commands.onCommand.addListener(function (command) {
     if (command === 'toggle-pin-current-tab') {
         toggleActiveTabPin();
     }
+
+    // Organize tabs in current window on shortcut
+    if (command === 'organize-tabs-current-window') {
+        organizeTabs();
+    }
+});
 });

@@ -32,6 +32,13 @@
         "mac": "Command+Shift+X"
       },
       "description": "Pin the current tab."
+    },
+    "organize-tabs": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+O",
+        "mac": "Command+Shift+O"
+      },
+      "description": "Organize your tabs."
     }
   },
   "background": {
