@@ -118,9 +118,11 @@ function handleApplyConfig() {
 }
 
 async function handleShowConfig() {
-    console.log("Showing current configuration...");
-    const loadedConfig = await loadConfig();
-    console.log(`handleShowConfig: ${JSON.stringify(loadedConfig)}`);
+    const modalBody = document.querySelector("#configPreviewModal > div.modal-content > div > p");
+    const config = await loadConfig();
+    const content = syntaxHighlight(JSON.stringify(config, undefined, 2));
+    modalBody.textContent = "";
+    modalBody.appendChild(document.createElement('pre')).innerHTML = content;
 }
 
 function getConfigInput(event) {
