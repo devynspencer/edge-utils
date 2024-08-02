@@ -27,6 +27,23 @@ document.getElementById("copyTabs")
         });
     });
 
+document.getElementById("copyFilteredTabs")
+    .addEventListener("click", () => {
+        let filter = document.getElementById("tabFilter").value.trim();
+
+        if (!filter) {
+            updateNotificationMessage("Enter a keyword/domain to filter on.");
+            return;
+        }
+
+        chrome.tabs.query({}, tabs => {
+            const filtered = tabs.filter(tab => tab.url.includes(filter));
+            const urls = filtered.map(tab => tab.url).join("\n");
+
+            updateNotificationMessage(`Copying URL information for [${filtered.length}] filtered tabs...`);
+            copyToClipboard(urls);
+        });
+    });
 document.getElementById("toggleActiveTabPin")
     .addEventListener("click", () => {
         updateNotificationMessage("Pinning active tab ...");
