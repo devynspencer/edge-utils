@@ -16,6 +16,17 @@ function copyToClipboard(text) {
     document.execCommand("copy");
     document.body.removeChild(textarea);
 }
+
+document.getElementById("copyTabs")
+    .addEventListener("click", () => {
+        chrome.tabs.query({}, tabs => {
+            const urls = tabs.map(tab => tab.url).join("\n");
+
+            updateNotificationMessage(`Copying URL information for [${tabs.length}] tabs...`);
+            copyToClipboard(urls);
+        });
+    });
+
 document.getElementById("toggleActiveTabPin")
     .addEventListener("click", () => {
         updateNotificationMessage("Pinning active tab ...");
