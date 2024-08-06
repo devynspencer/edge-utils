@@ -12,7 +12,7 @@ async function organizeTabs() {
     const currentConfig = (await loadConfig()).config;
     const tabs = await chrome.tabs.query({ currentWindow: true });
 
-    currentConfig.tab_groups.forEach(group => {
+    currentConfig?.tab_groups.forEach(group => {
         // Add any missing groups from config
         // Find tabs that belong to the group
         const groupTabs = tabs.filter(tab => {
@@ -22,7 +22,9 @@ async function organizeTabs() {
 
                 if (tabUrl.startsWith(configUrl)) {
                     console.log({ tab: tabUrl, config: configUrl, startsWith: tabUrl.startsWith(configUrl) });
-                } else {
+                }
+
+                else {
                     console.warn({ tab: tabUrl, config: configUrl, startsWith: tabUrl.startsWith(configUrl) });
                 }
 
