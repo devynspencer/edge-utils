@@ -60,10 +60,10 @@ async function applyConfig(data) {
 
     await chrome.storage.sync.set({
         config: {
-            rules: data.rules,
-            settings: data.settings,
-            tabs: data.tabs,
-            tab_groups: data.tab_groups
+            rules: data.rules || [],
+            settings: data.settings || {},
+            tabs: data.tabs || [],
+            tab_groups: data.tab_groups || []
         }
     });
 
