@@ -104,7 +104,7 @@ async function loadConfig() {
 
     const config = await chrome.storage.sync.get("config");
 
-    return config;
+    return config || setDefaultConfigValues();
 }
 
 // https://stackoverflow.com/questions/4810841/pretty-print-json-using-javascript
