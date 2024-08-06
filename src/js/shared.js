@@ -41,6 +41,9 @@ async function organizeTabs() {
             chrome.tabs.group({ tabIds: groupTabs.map(tab => tab.id) }, groupId => {
                 // Update group properties to match configuration
                 chrome.tabGroups.update(groupId, { color: color, title: group.name, collapsed: collapse });
+
+                // Order tabs based on how they appear in the configuration file
+                chrome.tabGroups.move(groupId, { index: -1 });
             });
         }
     });
