@@ -47,6 +47,12 @@ async function organizeTabs() {
             });
         }
     });
+
+    // Get remaining tabs that don't belong to any group
+    const remainingTabs = await chrome.tabs.query({ groupId: -1 });
+
+    // Move remaining tabs below the last group
+    chrome.tabs.move(remainingTabs.map(tab => tab.id), { index: -1 });
 }
 
 async function applyConfig(data) {
