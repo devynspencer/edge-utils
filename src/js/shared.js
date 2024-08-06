@@ -17,8 +17,8 @@ async function organizeTabs() {
         // Find tabs that belong to the group
         const groupTabs = tabs.filter(tab => {
             return group.tabs.some(url => {
-                const tabUrl = tab.url.replace(/^https?:\/\//, '');
-                const configUrl = url.replace(/^https?:\/\//, '');
+                const tabUrl = tab.url.replace(/^https?:\/\/(?:www\.)?/, '');
+                const configUrl = url.replace(/^https?:\/\/(?:www\.)?/, '');
 
                 if (tabUrl.startsWith(configUrl)) {
                     console.log({ tab: tabUrl, config: configUrl, startsWith: tabUrl.startsWith(configUrl) });
