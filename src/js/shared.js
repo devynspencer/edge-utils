@@ -70,6 +70,17 @@ async function applyConfig(data) {
     console.log("Configuration applied successfully!", data);
 }
 
+function setDefaultConfigValues(config) {
+    const defaultConfig = {
+        rules: [],
+        settings: {},
+        tabs: [],
+        tab_groups: []
+    };
+
+    return Object.assign({}, defaultConfig, config);
+}
+
 function validateConfig(data) {
     const requiredKeys = ["settings", "rules", "tabs", "tab_groups"];
 
