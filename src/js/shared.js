@@ -11,7 +11,6 @@ function toggleActiveTabPin() {
 async function organizeTabs() {
     const currentConfig = (await loadConfig()).config;
     const tabs = await chrome.tabs.query({ currentWindow: true });
-    const currentGroups = await chrome.tabGroups.query({});
 
     currentConfig.tab_groups.forEach(group => {
         // Add any missing groups from config
