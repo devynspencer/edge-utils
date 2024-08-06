@@ -36,9 +36,11 @@ async function organizeTabs() {
         // Move tabs to the group
         if (groupTabs.length > 0) {
             const color = group.color.toLowerCase() || "grey";
+            const collapse = group.collapse || false;
 
             chrome.tabs.group({ tabIds: groupTabs.map(tab => tab.id) }, groupId => {
-                chrome.tabGroups.update(groupId, { color: color, title: group.name });
+                // Update group properties to match configuration
+                chrome.tabGroups.update(groupId, { color: color, title: group.name, collapsed: collapse });
             });
         }
     });
