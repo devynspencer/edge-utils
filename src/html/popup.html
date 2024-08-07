@@ -123,22 +123,37 @@
             </button>
           </div>
         </div>
+
+        <!-- TODO: Adjust search type based on select -->
+        <div class="field has-addons">
+          <div class="control">
+            <span class="select is-small">
+              <select
+                title="Filter to use when exporting tab data"
+                id="filterType"
+              >
+                <option>Wildcard</option>
+                <option>Regex</option>
+                <option>Domain</option>
+              </select>
+            </span>
+          </div>
+          <div class="control">
             <input
+              id="tabFilter"
               class="input is-small"
               type="text"
-              id="tabFilter"
-              placeholder="Filter tabs by keyword"
+              placeholder="Update dynamically"
             />
           </div>
           <div class="control">
             <button
-              class="button is-primary is-outlined is-small"
               id="copyFilteredTabs"
+              class="button is-outlined is-primary is-small"
             >
-              Copy
+              Copy Tabs
             </button>
           </div>
-        </div>
         </div>
       </div>
     </section>
