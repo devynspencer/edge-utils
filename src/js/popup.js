@@ -69,10 +69,8 @@ document.getElementById("exportFormat")
             default: {
                 titleCheckbox.parentElement.disabled = true;
                 titleCheckbox.disabled = true;
-
                 urlCheckbox.parentElement.disabled = true;
                 urlCheckbox.disabled = true;
-
                 timestampCheckbox.parentElement.disabled = true;
                 timestampCheckbox.disabled = true;
             }
