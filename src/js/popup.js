@@ -31,6 +31,56 @@ document.getElementById("filterType")
         // Store selected filter type for quick reuse
         chrome.storage.sync.set({ filterType: document.getElementById("filterType").value });
     });
+
+// Fix: disabled checkboxes not appearing enabled
+document.getElementById("exportFormat")
+    .addEventListener("change", (event) => {
+        const exportFormat = event.target.value;
+        const titleCheckbox = document.getElementById("includeTitle");
+        const urlCheckbox = document.getElementById("includeUrl");
+        const timestampCheckbox = document.getElementById("includeTimestamp");
+
+        switch (exportFormat) {
+            case "MarkdownTable":
+            case "XML":
+            case "CSV":
+            case "YAML":
+            case "JSON": {
+                titleCheckbox.parentElement.disabled = false;
+                titleCheckbox.disabled = false;
+                urlCheckbox.parentElement.disabled = false;
+                urlCheckbox.disabled = false;
+                timestampCheckbox.parentElement.disabled = false;
+                timestampCheckbox.disabled = false;
+
+                break;
+            }
+
+            case "CSV": {
+                titleCheckbox.parentElement.disabled = false;
+                titleCheckbox.disabled = false;
+                urlCheckbox.parentElement.disabled = false;
+                urlCheckbox.disabled = false;
+                timestampCheckbox.parentElement.disabled = false;
+                timestampCheckbox.disabled = false;
+                break;
+            }
+
+            default: {
+                titleCheckbox.parentElement.disabled = true;
+                titleCheckbox.disabled = true;
+
+                urlCheckbox.parentElement.disabled = true;
+                urlCheckbox.disabled = true;
+
+                timestampCheckbox.parentElement.disabled = true;
+                timestampCheckbox.disabled = true;
+            }
+        }
+
+        chrome.storage.sync.set({ exportFormat: event.target.value });
+    });
+
 document.addEventListener("DOMContentLoaded", () => {
     // Retrieve the stored filter type from chrome storage
     chrome.storage.sync.get("filterType", data => {
