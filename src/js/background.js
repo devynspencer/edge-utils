@@ -16,5 +16,6 @@ chrome.commands.onCommand.addListener(function (command) {
         organizeTabs();
     }
 });
+
 chrome.runtime.onStartup.addListener(() => {
 });

@@ -106,6 +106,7 @@ async function handleShowConfig() {
     const modalBody = document.querySelector("#configPreviewModal > div.modal-content > div > p");
     const config = await loadConfig();
     const content = syntaxHighlight(JSON.stringify(config, undefined, 2));
+
     modalBody.textContent = "";
     modalBody.appendChild(document.createElement('pre')).innerHTML = content;
 }
@@ -114,7 +115,6 @@ function getConfigInput(event) {
     const reader = new FileReader();
 
     if (event.target.files.length > 0) {
-
         reader.readAsText(event.target.files[0]);
         reader.onloadend = function () {
             try {

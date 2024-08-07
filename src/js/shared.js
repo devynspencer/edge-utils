@@ -56,6 +56,7 @@ async function organizeTabs() {
         });
 
         // TODO: Ensure group doesn't already exist so we're not creating a new one
+
         // Move tabs to the group
         if (groupTabs.length > 0) {
             const color = group.color.toLowerCase() || "grey";
