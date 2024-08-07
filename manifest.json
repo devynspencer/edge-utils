@@ -33,14 +33,14 @@
         "default": "Ctrl+Shift+X",
         "mac": "Command+Shift+X"
       },
-      "description": "Pin the current tab."
+      "description": "Pin current browser tab."
     },
     "organize-tabs": {
       "suggested_key": {
         "default": "Ctrl+Shift+O",
         "mac": "Command+Shift+O"
       },
-      "description": "Organize your tabs."
+      "description": "Group, sort, and purge browser tabs based on user configuration. See documentation for config examples."
     }
   },
   "background": {
