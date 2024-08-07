@@ -18,4 +18,5 @@ chrome.commands.onCommand.addListener(function (command) {
 });
 
 chrome.runtime.onStartup.addListener(() => {
+    loadConfig();
 });
