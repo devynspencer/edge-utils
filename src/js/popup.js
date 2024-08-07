@@ -13,6 +13,12 @@ function copyToClipboard(text) {
     document.body.removeChild(textarea);
 }
 
+document.getElementById("muteTabs")
+    .addEventListener("click", async () => {
+        // TODO: Probably should replace function calls with message passing? Probably?
+        muteTabs();
+    });
+
 document.getElementById("organizeTabs")
     .addEventListener("click", () => {
         organizeTabs();
