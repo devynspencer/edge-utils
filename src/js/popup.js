@@ -1,5 +1,36 @@
 
 
+// TODO: Retrieve the stored filter type from chrome storage
+document.getElementById("filterType")
+    .addEventListener("change", (event) => {
+        const filterType = event.target.value;
+        let placeholder = "example.com";
+
+        switch (filterType) {
+            case "Wildcard": {
+                placeholder = "*.example.com";
+                break;
+            }
+
+            case "Regex": {
+                placeholder = "^\w+\.example.com";
+                break;
+            }
+
+            case "Domain": {
+                placeholder = "example.com";
+                break;
+            }
+
+            // TODO: Unsure if default value is necessary and/or helpful
+        }
+
+        // Apply the placeholder text based on the selected filter type
+        document.getElementById("tabFilter").placeholder = placeholder;
+
+        // Store selected filter type for quick reuse
+        chrome.storage.sync.set({ filterType: document.getElementById("filterType").value });
+    });
 document.addEventListener("DOMContentLoaded", () => {
     // Retrieve the stored filter type from chrome storage
     chrome.storage.sync.get("filterType", data => {
