@@ -1,3 +1,21 @@
+// TODO: Use different icons for different types of notifications (and make em cute)
+// TODO: Format message based on type (debug vs info vs error etc.)
+// TODO: Set priority based on message type (error, warning, info etc.)
+// TODO: This should porobvably accept an options object instead of multiple parameters (if only to clearly identify what random text is the message body vs title etc)
+// TODO: Capture calling function name and line number for debugging purposes
+// TODO: Debounce multiple notifications into a single one
+function showNotification(options = {}) {
+    const extensionInfo = chrome.runtime.getManifest();
+
+    // TODO: Automatically shorten notification message or link to a full log somewhere (with something fancier than slice(0, 50) as below)
+    chrome.notifications.create({
+        type: options.type || 'basic',
+        iconUrl: options.iconUrl || '../../assets/icons/brain-original.jpg',
+        title: options.title || `${extensionInfo.name} v${extensionInfo.version}`,
+        message: options.message?.slice(0, 50) || "",
+    }, () => console.error(chrome.runtime.lastError));
+}
+
 function toggleActiveTabPin() {
     chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
         const activeTab = tabs.find(tab => tab.active);
