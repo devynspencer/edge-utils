@@ -77,6 +77,21 @@ document.getElementById("copyTabsFromGroup")
         copyToClipboard(urls);
     }));
 
+document.getElementById("copySelectedTabs")
+    .addEventListener("click", async () => {
+        const selected = await chrome.tabs.query({
+            currentWindow: true,
+            highlighted: true
+        });
+        const urls = selected.map(tab => tab.url).join("\n");
+
+        showNotification({
+            title: `Copied [${selected.length}] tabs to clipboard...`,
+            message: JSON.stringify(selected)
+        });
+        copyToClipboard(urls);
+    });
+
 document.getElementById("toggleActiveTabPin")
     .addEventListener("click", () => {
         toggleActiveTabPin();
