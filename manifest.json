@@ -35,6 +35,13 @@
       },
       "description": "Pin current browser tab."
     },
+    "mute-all-tabs": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+M",
+        "mac": "Command+Shift+M"
+      },
+      "description": "Mute all browser tabs."
+    },
     "organize-tabs": {
       "suggested_key": {
         "default": "Ctrl+Shift+O",

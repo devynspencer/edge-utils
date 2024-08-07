@@ -126,3 +126,13 @@ function syntaxHighlight(json) {
         return '<span class="' + cls + '">' + match + '</span>';
     });
 }
+
+async function muteTabs() {
+    const audibleTabs = await chrome.tabs.query({ audible: true });
+
+    if (audibleTabs.length === 0) {
+        return;
+    }
+
+    audibleTabs.forEach(tab => chrome.tabs.update(tab.id, { muted: true }));
+}

@@ -7,6 +7,10 @@ chrome.commands.onCommand.addListener(function (command) {
         toggleActiveTabPin();
     }
 
+    if (command === 'mute-all-tabs') {
+        muteAllTabs();
+    }
+
     // Organize tabs in current window on shortcut
     if (command === 'organize-tabs') {
         organizeTabs();
