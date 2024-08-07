@@ -1,8 +1,4 @@
-function updateNotificationMessage(message) {
-    const messageElement = document.getElementById("message");
 
-    messageElement.textContent = message;
-}
 
 function copyToClipboard(text) {
     // TODO: Why not just copy directly to the clipboard
@@ -19,7 +15,6 @@ function copyToClipboard(text) {
 
 document.getElementById("organizeTabs")
     .addEventListener("click", () => {
-        updateNotificationMessage("Organizing tabs...");
         organizeTabs();
     });
 
@@ -28,7 +23,10 @@ document.getElementById("copyTabs")
         chrome.tabs.query({}, tabs => {
             const urls = tabs.map(tab => tab.url).join("\n");
 
-            updateNotificationMessage(`Copying URL information for [${tabs.length}] tabs...`);
+            showNotification({
+                title: `Copying URL information for [${tabs.length}] tabs...`,
+                message: JSON.stringify(tabs)
+            });
             copyToClipboard(urls);
         });
     });
@@ -38,7 +36,7 @@ document.getElementById("copyFilteredTabs")
         let filter = document.getElementById("tabFilter").value.trim();
 
         if (!filter) {
-            updateNotificationMessage("Enter a keyword/domain to filter on.");
+            showNotification({ title: "Enter a keyword/domain to filter on." });
             return;
         }
 
@@ -46,7 +44,10 @@ document.getElementById("copyFilteredTabs")
             const filtered = tabs.filter(tab => tab.url.includes(filter));
             const urls = filtered.map(tab => tab.url).join("\n");
 
-            updateNotificationMessage(`Copying URL information for [${filtered.length}] filtered tabs...`);
+            showNotification({
+                title: `Copying URL information for [${filtered.length}] filtered tabs...`,
+                message: JSON.stringify(filtered)
+            });
             copyToClipboard(urls);
         });
     });
@@ -56,19 +57,21 @@ document.getElementById("copyTabsFromGroup")
         const activeTab = tabs.find(tab => tab.active);
 
         if (activeTab.groupId === -1) {
-            updateNotificationMessage("No tab group found for the active tab.");
+            showNotification({ title: "No tab group found for active tab." });
             return;
         }
 
         const groupTabs = tabs.filter(tab => tab.groupId === activeTab.groupId);
         const urls = groupTabs.map(tab => tab.url).join("\n");
 
-        updateNotificationMessage(`Copying [${groupTabs.length}] tabs in group [${activeTab.groupId}]...`);
+        showNotification({
+            title: `Copying [${groupTabs.length}] tabs in group [${activeTab.groupId}]...`,
+            message: JSON.stringify(groupTabs)
+        });
         copyToClipboard(urls);
     }));
 
 document.getElementById("toggleActiveTabPin")
     .addEventListener("click", () => {
-        updateNotificationMessage("Pinning active tab ...");
         toggleActiveTabPin();
     });
