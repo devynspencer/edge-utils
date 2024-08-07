@@ -36,6 +36,33 @@
             </button>
           </div>
         </div>
+
+        <div class="field has-addons">
+          <div class="control">
+            <div class="select is-small">
+              <select id="exportFormat">
+                <option value="JSON">Object: JSON Object</option>
+                <option value="CSV">Object: CSV Row</option>
+                <option value="YAML">Object: YAML Object</option>
+                <option value="XML">Object: XML Object</option>
+                <option value="MarkdownLink">
+                  Markdown: Bullet (Inline) Link
+                </option>
+                <option value="MarkdownTask">Markdown: Checklist Task</option>
+                <option value="MarkdownTable">Markdown: Table</option>
+                <option value="MarkdownDefinition">Markdown: Definition</option>
+                <option value="JSDoc">Documentation: JSDoc header</option>
+                <option value="LuaDoc">Documentation: LuaDoc header</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="control">
+            <button class="button is-primary is-small" id="copyTabsAs">
+              Copy Tabs As
+            </button>
+          </div>
+        </div>
         <div class="field is-grouped">
           <div class="control">
             <button
