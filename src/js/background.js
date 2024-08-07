@@ -8,7 +8,7 @@ chrome.commands.onCommand.addListener(function (command) {
     }
 
     // Organize tabs in current window on shortcut
-    if (command === 'organize-tabs-current-window') {
+    if (command === 'organize-tabs') {
         organizeTabs();
     }
 });
