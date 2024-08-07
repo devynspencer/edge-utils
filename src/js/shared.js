@@ -17,6 +17,7 @@ function showNotification(options = {}) {
 }
 
 function toggleActiveTabPin() {
+    showNotification({ title: `Toggling pin for active tab...` });
     chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
         const activeTab = tabs.find(tab => tab.active);
 
@@ -29,6 +30,10 @@ function toggleActiveTabPin() {
 async function organizeTabs() {
     const currentConfig = (await loadConfig()).config;
     const tabs = await chrome.tabs.query({ currentWindow: true });
+
+    showNotification({
+        title: `Organizing [${tabs.length}] tabs...`,
+    });
 
     currentConfig?.tab_groups.forEach(group => {
         // Add any missing groups from config
@@ -74,8 +79,6 @@ async function organizeTabs() {
 }
 
 async function applyConfig(data) {
-    console.log(`Applying configuration from data ${data}...`);
-
     await chrome.storage.sync.set({
         config: {
             rules: data.rules || [],
@@ -85,7 +88,10 @@ async function applyConfig(data) {
         }
     });
 
-    console.log("Configuration applied successfully!", data);
+    showNotification({
+        title: "Configuration applied successfully.",
+        message: `Configuration: ${JSON.stringify(config)}`
+    });
 }
 
 function setDefaultConfigValues(config) {
@@ -118,8 +124,6 @@ function validateConfig(data) {
 }
 
 async function loadConfig() {
-    console.log("Loading configuration...");
-
     const config = await chrome.storage.sync.get("config");
 
     return config || setDefaultConfigValues();
@@ -149,8 +153,14 @@ async function muteTabs() {
     const audibleTabs = await chrome.tabs.query({ audible: true });
 
     if (audibleTabs.length === 0) {
+        showNotification({ title: "No tabs to mute." });
         return;
     }
+
+    showNotification({
+        title: `Muting [${audibleTabs.length}] tabs...`,
+        message: `Tabs: ${JSON.stringify(audibleTabs)}`
+    });
 
     audibleTabs.forEach(tab => chrome.tabs.update(tab.id, { muted: true }));
 }
