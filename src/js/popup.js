@@ -1,5 +1,17 @@
 
 
+document.addEventListener("DOMContentLoaded", () => {
+    // Retrieve the stored filter type from chrome storage
+    chrome.storage.sync.get("filterType", data => {
+        document.getElementById("filterType").value = data.filterType || "Wildcard";
+    });
+
+    // TODO: Should these use local storage?
+    chrome.storage.sync.get("exportFormat", data => {
+        document.getElementById("exportFormat").value = data.exportFormat || "JSON";
+    });
+});
+
 function copyToClipboard(text) {
     // TODO: Why not just copy directly to the clipboard
     const textarea = document.createElement("textarea");
