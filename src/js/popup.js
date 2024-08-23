@@ -32,7 +32,9 @@ document.getElementById("filterType")
         filterText.value = placeholder;
 
         // Store selected filter type for quick reuse
-        chrome.storage.sync.set({ filterType: document.getElementById("filterType").value });
+        chrome.storage.sync.set({
+            filterType: filterType.value
+        });
     });
 
 // Fix: disabled checkboxes not appearing enabled
