@@ -6,14 +6,20 @@
 // TODO: Debounce multiple notifications into a single one
 function showNotification(options = {}) {
     const extensionInfo = chrome.runtime.getManifest();
+    const element = document.getElementById("notificationText");
+    const title = options.title || `${extensionInfo.name} v${extensionInfo.version}`;
 
-    // TODO: Automatically shorten notification message or link to a full log somewhere (with something fancier than slice(0, 50) as below)
-    chrome.notifications.create({
-        type: options.type || 'basic',
-        iconUrl: options.iconUrl || '../../assets/icons/brain-original.jpg',
-        title: options.title || `${extensionInfo.name} v${extensionInfo.version}`,
-        message: options.message?.slice(0, 50) || "",
-    }, () => console.error(chrome.runtime.lastError));
+    // TODO: Add a close button to the notification
+    // TODO: Only add message paragraph if a message is provided
+
+    // TODO: Purge this heresy
+    if (options.message) {
+        element.innerHTML = `<div class="notification"><h6>${title}</h6><p>${options.message}</p></div>`;
+    }
+
+    else {
+        element.innerHTML = `<div class="notification"><h6>${title}</h6></div>`;
+    }
 }
 
 function toggleActiveTabPin() {
