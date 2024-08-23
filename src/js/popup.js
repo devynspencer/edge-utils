@@ -91,7 +91,8 @@ document.getElementById("exportFormat")
 document.addEventListener("DOMContentLoaded", () => {
     // Retrieve the stored filter type from chrome storage
     chrome.storage.sync.get("filterType", data => {
-        document.getElementById("filterType").value = data.filterType || "Wildcard";
+        document.getElementById("filterType").value = data.filterType || "Domain";
+    });
 
     chrome.storage.sync.get("filterText", data => {
         document.getElementById("tabFilter").value = data.filterText || "";
