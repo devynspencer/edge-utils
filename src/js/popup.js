@@ -4,7 +4,7 @@
 document.getElementById("filterType")
     .addEventListener("change", (event) => {
         const filterType = event.target.value;
-        let placeholder = "example.com";
+        let placeholder = "";
 
         switch (filterType) {
             case "Wildcard": {
