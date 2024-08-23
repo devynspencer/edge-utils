@@ -2,23 +2,25 @@
 
 // TODO: Retrieve the stored filter type from chrome storage
 document.getElementById("filterType")
-    .addEventListener("change", (event) => {
+    .addEventListener("change", async (event) => {
         const filterType = event.target.value;
         let placeholder = "";
+        const currentTab = await chrome.tabs.query({ active: true, currentWindow: true });
+        const domain = new URL(currentTab[0].url).hostname;
 
         switch (filterType) {
             case "Wildcard": {
-                placeholder = "*.example.com";
+                placeholder = `*.${domain}`;
                 break;
             }
 
             case "Regex": {
-                placeholder = "^\w+\.example.com";
+                placeholder = `^\\w+\\.${domain}`;
                 break;
             }
 
             case "Domain": {
-                placeholder = "example.com";
+                placeholder = `${domain}`;
                 break;
             }
 
