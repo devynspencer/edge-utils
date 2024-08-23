@@ -4,6 +4,7 @@
 document.getElementById("filterType")
     .addEventListener("change", async (event) => {
         const filterType = event.target.value;
+        const filterText = document.getElementById("tabFilter");
         let placeholder = "";
         const currentTab = await chrome.tabs.query({ active: true, currentWindow: true });
         const domain = new URL(currentTab[0].url).hostname;
@@ -28,7 +29,7 @@ document.getElementById("filterType")
         }
 
         // Apply the placeholder text based on the selected filter type
-        document.getElementById("tabFilter").placeholder = placeholder;
+        filterText.value = placeholder;
 
         // Store selected filter type for quick reuse
         chrome.storage.sync.set({ filterType: document.getElementById("filterType").value });
