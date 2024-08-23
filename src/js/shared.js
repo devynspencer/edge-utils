@@ -58,12 +58,10 @@ async function organizeTabs() {
                 const tabUrl = tab.url.replace(/^https?:\/\/(?:www\.)?/, '');
                 const configUrl = url.replace(/^https?:\/\/(?:www\.)?/, '');
 
-                if (tabUrl.startsWith(configUrl)) {
-                    console.log({ tab: tabUrl, config: configUrl, startsWith: tabUrl.startsWith(configUrl) });
-                }
+                const result = { tab: tabUrl, config: configUrl, startsWith: tabUrl.startsWith(configUrl) };
 
-                else {
-                    console.warn({ tab: tabUrl, config: configUrl, startsWith: tabUrl.startsWith(configUrl) });
+                if (tabUrl.startsWith(configUrl)) {
+                    console.log(`Matching tab found: ${JSON.stringify(result)} `);
                 }
 
                 return tabUrl.startsWith(configUrl);
