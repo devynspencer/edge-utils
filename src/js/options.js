@@ -50,6 +50,7 @@ document.getElementById("applyConfig")
 document.getElementById("showConfig")
     .addEventListener("click", handleShowConfig);
 
+// TODO: Also update config file preview on file input change
 const fileInput = document.querySelector("#config-file-input-field input[type=file]");
 fileInput.onchange = () => {
     if (fileInput.files.length > 0) {
@@ -78,6 +79,7 @@ function handleValidateConfig() {
     }
 }
 
+// CRITICAL: Display an *obvious* message to the user if the configuration is invalid
 
 function handleApplyConfig() {
     let content = {};
@@ -123,6 +125,7 @@ function getConfigInput(event) {
                 validateConfig(content);
 
                 // TODO: Open modal with preview (and options to apply config or cancel)
+                // TODO: Send the output somewhere (ideally return it, but maybe we could add a config_preview property to storage?)
             }
 
             catch (error) {
