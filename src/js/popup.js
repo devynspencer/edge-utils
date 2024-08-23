@@ -122,7 +122,7 @@ document.getElementById("copyTabs")
 
             showNotification({
                 title: `Copying URL information for [${tabs.length}] tabs...`,
-                message: JSON.stringify(tabs)
+                message: tabs.slice(0, 10).map(tab => tab.url.slice(0, 75)).join("...<br/>")
             });
             copyToClipboard(urls);
         });
@@ -142,8 +142,8 @@ document.getElementById("copyFilteredTabs")
             const urls = filtered.map(tab => tab.url).join("\n");
 
             showNotification({
-                title: `Copying URL information for [${filtered.length}] filtered tabs...`,
-                message: JSON.stringify(filtered)
+                title: `Copied info for [${filtered.length}] tabs matching [${filter}]...`,
+                message: filtered.slice(0, 10).map(tab => tab.url.slice(0, 75)).join("...<br/>")
             });
             copyToClipboard(urls);
         });
@@ -163,7 +163,7 @@ document.getElementById("copyTabsFromGroup")
 
         showNotification({
             title: `Copying [${groupTabs.length}] tabs in group [${activeTab.groupId}]...`,
-            message: JSON.stringify(groupTabs)
+            message: groupTabs.map(tab => tab.url.slice(0, 75)).join("...<br/>")
         });
         copyToClipboard(urls);
     }));
@@ -174,11 +174,15 @@ document.getElementById("copySelectedTabs")
             currentWindow: true,
             highlighted: true
         });
+
+        // TODO: Maybe add the newline in the copyToClipboard function so the message body can be trimmed easier
         const urls = selected.map(tab => tab.url).join("\n");
 
         showNotification({
             title: `Copied [${selected.length}] tabs to clipboard...`,
-            message: JSON.stringify(selected)
+            // TODO: Move magic numbers like 75 to a constant, i.e. NOTIFICATION_LINE_LENGTH
+            // TODO: Move magic numbers like 25 to a constant, i.e. NOTIFICATION_MESSAGE_LENGTH
+            message: selected.slice(0, 10).map(tab => tab.url.slice(0, 75)).join("...<br/>")
         });
         copyToClipboard(urls);
     });

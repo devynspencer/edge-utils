@@ -23,9 +23,12 @@ function showNotification(options = {}) {
 }
 
 function toggleActiveTabPin() {
-    showNotification({ title: `Toggling pin for active tab...` });
     chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
         const activeTab = tabs.find(tab => tab.active);
+
+        showNotification({
+            title: `Toggling pin for tab ${activeTab.id}...`
+        });
 
         // Assumes active tab by default
         chrome.tabs.update({ pinned: !activeTab.pinned });
@@ -38,7 +41,7 @@ async function organizeTabs() {
     const tabs = await chrome.tabs.query({ currentWindow: true });
 
     showNotification({
-        title: `Organizing [${tabs.length}] tabs...`,
+        title: `Organizing [${tabs.length}] tabs...`
     });
 
     currentConfig?.tab_groups.forEach(group => {
@@ -97,7 +100,7 @@ async function applyConfig(data) {
 
     showNotification({
         title: "Configuration applied successfully.",
-        message: `Configuration: ${JSON.stringify(config)}`
+        message: JSON.stringify(config, null, 2)
     });
 }
 
@@ -165,8 +168,8 @@ async function muteTabs() {
     }
 
     showNotification({
-        title: `Muting [${audibleTabs.length}] tabs...`,
-        message: `Tabs: ${JSON.stringify(audibleTabs)}`
+        title: `Muting[${audibleTabs.length}] tabs...`,
+        message: audibleTabs.map(tab => tab.url.slice(0, 50)).join("...\n")
     });
 
     audibleTabs.forEach(tab => chrome.tabs.update(tab.id, { muted: true }));
