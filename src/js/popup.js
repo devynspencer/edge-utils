@@ -35,6 +35,10 @@ document.getElementById("filterType")
         chrome.storage.sync.set({
             filterType: filterType.value
         });
+
+        chrome.storage.sync.set({
+            filterText: placeholder
+        });
     });
 
 // Fix: disabled checkboxes not appearing enabled
@@ -88,6 +92,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Retrieve the stored filter type from chrome storage
     chrome.storage.sync.get("filterType", data => {
         document.getElementById("filterType").value = data.filterType || "Wildcard";
+
+    chrome.storage.sync.get("filterText", data => {
+        document.getElementById("tabFilter").value = data.filterText || "";
     });
 
     // TODO: Should these use local storage?
