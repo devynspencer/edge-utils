@@ -23,6 +23,7 @@ function showNotification(options = {}) {
 }
 
 function toggleActiveTabPin() {
+    // TODO: Refactor this into a promise-based function
     chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
         const activeTab = tabs.find(tab => tab.active);
 
@@ -35,6 +36,10 @@ function toggleActiveTabPin() {
     });
 }
 
+// TODO: Add function to toggle collapse/expand on all tab groups
+// TODO: Add function to sort tab groups by name
+// TODO: Add function to export current tab groups to a config file
+// FIX: Existing tabs sometimes show as blank (cleared by collapse/expand on group)
 
 async function organizeTabs() {
     const currentConfig = (await loadConfig()).config;
@@ -45,7 +50,8 @@ async function organizeTabs() {
     });
 
     currentConfig?.tab_groups.forEach(group => {
-        // Add any missing groups from config
+        // TODO: Add any missing groups from config
+
         // Find tabs that belong to the group
         const groupTabs = tabs.filter(tab => {
             return group.tabs.some(url => {
@@ -64,6 +70,7 @@ async function organizeTabs() {
             });
         });
 
+        // TODO: Handle groups with identical names
         // TODO: Ensure group doesn't already exist so we're not creating a new one
 
         // Move tabs to the group
@@ -90,6 +97,8 @@ async function organizeTabs() {
 
 async function applyConfig(data) {
     await chrome.storage.sync.set({
+        // TODO: Remove settings key, and move settings to the root level of the config object
+        // CRITICAL: Remove unnecessary config key around data, i.e. keep { rules, settings: {}, tabs: [], tab_groups: [] }
         config: {
             rules: data.rules || [],
             settings: data.settings || {},
@@ -115,6 +124,8 @@ function setDefaultConfigValues(config) {
     return Object.assign({}, defaultConfig, config);
 }
 
+// TODO: Ensure all groups in config have unique titles
+// TODO: Ensure multiple groups do not contain a tab with the same URL (otherwise how would it know where to place the tab)
 function validateConfig(data) {
     const requiredKeys = ["settings", "rules", "tabs", "tab_groups"];
 
@@ -133,6 +144,10 @@ function validateConfig(data) {
     return true;
 }
 
+// TODO: Consider separate configs for layout, settings, features etc.
+// TODO: Document configuration options
+// TODO: Add diagram for configuration structure, and how it is applied
+// Apply local configuration from browser storage
 async function loadConfig() {
     const config = await chrome.storage.sync.get("config");
 
